@@ -3,6 +3,7 @@ const router = express.Router;
 
 // 로그인 라우터 구현
 // 로그인 url 접속 시에 login ejs 파일을 보여준다
+// auth/login
 router.get("/login", (req, res) => {
   res.render("login");
 });
