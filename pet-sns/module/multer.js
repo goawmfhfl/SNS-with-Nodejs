@@ -1,3 +1,4 @@
+/* 모듈 파일은 미들웨어의 역할을 합니다 !*/
 const multer = require("multer");
 // multer 패키지 불러오기
 const multerS3 = require("multer-s3");
@@ -8,8 +9,9 @@ const aws = require("aws-sdk");
 aws.config.loadFromPath(__dirname + "/../config/s3Info.json");
 // loadFromPath를 통해서 config에 있는 정보를 aws.config라는 속성값에 추가해준 것이다
 
+// s3
+// 뮬터 정보 추가하기
 const s3 = new aws.S3();
-// s3라는 데이터 베이스를 불러온다.
 const upload = multer({
   //multer는 파일을 업로드할 때 유용한 패키지다.
   storage: multerS3({
@@ -18,7 +20,7 @@ const upload = multer({
     bucket: "myfirstdatabase",
     acl: "public-read-write",
     key: (req, file, cd) => {
-      cd(null, Date.now() + "." + file.orginalname.split(".").pop());
+      cd(null, Date.now() + "." + file.originalname.split(".").pop());
       // 확장자명을 .을 통해서 분리하고  확장자를 pop을 통해서 제거해주려고하는 것이다.
       // dog.png 라는 파일이 들어오면 dog png로 나뉘어지며 png는 삭제가 된다.
     },
