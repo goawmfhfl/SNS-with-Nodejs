@@ -15,14 +15,14 @@ const dbConfig = require("../config/dbConfig.json");
 
 const mongoose = require("mongoose");
 const db = mongoose.connection;
-db.on(error, console.error);
+db.on("error", console.error);
 db.once("open", () => {
   console.log("connected to mongodb server");
 });
 
 mongoose.connect(
-  `mongodb+srv://${dbConfig.name}:${dbConfig.password}@cluster0.7g0ci.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
-  { userNewUrlParser: true, useUnifiedTopology: true },
+  `mongodb+srv://${dbConfig.name}:${dbConfig.pw}@cluster0.7g0ci.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+  { useNewurlParser: true, useUnifiedTopology: true },
 );
 
 var port = normalizePort(process.env.PORT || "3000");
