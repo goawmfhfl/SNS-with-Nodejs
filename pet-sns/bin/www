@@ -21,7 +21,7 @@ db.once("open", () => {
 });
 
 mongoose.connect(
-  `mongodb+srv://${dbConfig.name}:${dbConfig.password}@cluster0.7g0ci.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+  `mongodb+srv://${dbConfig.name}:${dbConfig.pw}@cluster0.7g0ci.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
   { useNewurlParser: true, useUnifiedTopology: true },
 );
 
