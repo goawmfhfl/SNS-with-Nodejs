@@ -30,6 +30,12 @@ const postSchema = new Schema({
     type: Array,
     default: [],
   },
+  user: {
+    _id: mongoose.Types.ObjectId,
+    username: String,
+  },
 });
+// 해당 유저가 어떠한 정보를 가지고 있는지 파악이 가능해진다.
+// 어떤 유저가 해당 게시물을 업로드했는지 체크할 수 있다.
 
 module.exports = mongoose.model("post", postSchema);
