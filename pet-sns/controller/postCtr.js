@@ -36,6 +36,12 @@ const postCtr = {
       res.status(500).send("upload error");
     }
   },
+  list: async (req, res) => {
+    //전체 게시물을 불러온다음에 posts에 초기화
+    const posts = await Post.find({});
+    // 전체 게시물을 postList라는 키값에 저장한 후 index로 데이터를 전달한다
+    res.render("index", { postList: posts });
+  },
 };
 
 module.exports = postCtr;
