@@ -42,6 +42,16 @@ const postCtr = {
     // 전체 게시물을 postList라는 키값에 저장한 후 index로 데이터를 전달한다
     res.render("index", { postList: posts });
   },
+  detail: async (req, res) => {
+    // <a href="/posts/<%= e._id %>" class="header"><%= e.title %></a>
+    // _id값을 통해서 해당 게시물에 접근하는 것을 알 수 있다.
+    // 해당 id값을 바탕으로 접근하고 보여줘야한다
+    const { id } = req.params;
+    // 아이디를 바탕으로 게시물 조회하기
+    const post = await Post.findById(id);
+    // 찾아온 결과값을 detail 페이지로 넘겨주기
+    res.render("detail", { post: post });
+  },
 };
 
 module.exports = postCtr;
