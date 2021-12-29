@@ -7,9 +7,7 @@ router.get("/upload", (req, res) => {
   res.render("upload");
 });
 
-router.get("/:id", (req, res) => {
-  res.render("detail");
-});
+router.get("/:id", postCtr.detail);
 
 router.get("/update/:id", (req, res) => {
   res.render("update");
