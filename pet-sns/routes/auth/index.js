@@ -5,6 +5,7 @@ const authCtr = require("../../controller/authCtr");
 // 회원가입 기능 구현하기
 // register라는 경로에 접속하면 회원가입이 진행되도록하자
 router.post("/register", authCtr.register);
+router.post("/login");
 
 // 로그인 라우터 구현
 // 로그인 url 접속 시에 login ejs 파일을 보여준다
