@@ -13,5 +13,9 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+router.get("/register", (req, res) => {
+  res.render("register");
+});
+
 // 라우터를 외부 파일에서도 사용할 수 있게 세팅해주었다
 module.exports = router;
