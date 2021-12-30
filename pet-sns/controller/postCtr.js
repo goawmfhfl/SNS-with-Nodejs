@@ -75,6 +75,15 @@ const postCtr = {
       res.status(500).send("Update error");
     }
   },
+  delete: async (req, res) => {
+    const { id } = req.params;
+    try {
+      await Post.findByIdAndDelete(id);
+      res.redirect("/");
+    } catch (error) {
+      res.status(500).send("delete error");
+    }
+  },
 };
 
 module.exports = postCtr;
