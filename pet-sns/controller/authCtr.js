@@ -42,7 +42,7 @@ const authCtr = {
       res.status(500).send("password invalid");
     }
     // 만약 일치한다면?
-    const data = user.toJSON;
+    const data = user.toJSON();
     // 패스워드를 왜 지워주는걸까?
     delete data.password;
     // 토크나이징
