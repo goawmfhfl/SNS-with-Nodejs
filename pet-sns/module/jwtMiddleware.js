@@ -13,7 +13,7 @@ const jwtMiddleware = async (req, res, next) => {
     // 이것을 사용하는 이유는 로그인을 할 경우 로그아웃 버튼을 보여줘야하며
     // 로그아웃 일 때는 로그인 상태를 보여주기 위해서 사용한다.
     res.locals.isAuthenticated = {};
-    return next;
+    return next();
   }
   try {
     // decoded 는 복호화를 뜻한다.
