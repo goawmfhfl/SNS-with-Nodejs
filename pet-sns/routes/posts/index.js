@@ -8,13 +8,11 @@ router.get("/upload", (req, res) => {
 });
 
 router.get("/:id", postCtr.detail);
+// update 구현
+router.get("/update/:id", postCtr.updateLayout);
 
-router.get("/update/:id", (req, res) => {
-  res.render("update");
-});
-// 내부에서 로직을 작성하는 방식은 유지보수가 힘들다
-// 그렇기 때문에 controller라는 폴더를 생성해서
-// post에 대한 로직을 외부에서 작성해서 사용한다.
+// update 와
+// delete 역시 외부 Ctr 폴더로 관리를 해줄 예정이다.
 router.post("/", upload.single("image"), postCtr.upload);
 
 module.exports = router;

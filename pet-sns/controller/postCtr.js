@@ -52,6 +52,14 @@ const postCtr = {
     // 찾아온 결과값을 detail 페이지로 넘겨주기
     res.render("detail", { post: post });
   },
+  // 업데이트 페이지에 진입을 했을 때 이전의 데이트들이
+  // 업데이트 페이지에 이미 바운딩 되어있으면 편하다.
+  updateLayout: async (req, res) => {
+    const { id } = req.params;
+    // post 변수에 DB에서 일치하는 id값을 찾아온다.
+    const post = await Post.findById(id);
+    res.render("update", { post: post });
+  },
 };
 
 module.exports = postCtr;
