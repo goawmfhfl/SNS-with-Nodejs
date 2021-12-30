@@ -14,4 +14,4 @@ const authSchema = new Schema({
   password: String,
 });
 
-module.exports = mongoose.model("post", postSchema);
+module.exports = mongoose.model("post", authSchema);
