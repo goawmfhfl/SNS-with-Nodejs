@@ -85,6 +85,33 @@ const postCtr = {
       res.status(500).send("delete error");
     }
   },
+  like: async (req, res) => {
+    // 좋아요 버튼을 누르는데 왜 요청자의 params가 id값으로 들어가는지 모르겠음
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    // some 함수는 likeUser 함수를 돌면서 _id 값이 존재한다면
+    // true 만약 존재하지 않는다면 false
+    const check = post.likeUser.some(userId => {
+      return userId === req.userInfo._id;
+    });
+    if (check) {
+      post.likeCount -= 1;
+      // idx를 출력
+      const idx = post.likeUser.indexOf(req.userInfo._id);
+      if (idx > -1) {
+        // 해당유저 삭제
+        post.likeUser.splice(idx, 1);
+      }
+    } else {
+      post.likeCount += 1;
+      post.likeUser.push(req.userInfo._id);
+    }
+    const result = await post.save();
+    res.status(200).json({
+      check: check,
+      post: result,
+    });
+  },
 };
 
 module.exports = postCtr;
