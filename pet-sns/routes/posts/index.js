@@ -24,6 +24,7 @@ router.post("/update/:id", checkUser, postCtr.update);
 // delete 구현
 router.post("/delete/:id", checkUser, postCtr.delete);
 
-router.post("/like/:id");
+// like 기능 구현
+router.post("/like/:id", checkUser, postCtr.like);
 
 module.exports = router;

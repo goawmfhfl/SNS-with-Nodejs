@@ -107,6 +107,10 @@ const postCtr = {
       post.likeUser.push(req.userInfo._id);
     }
     const result = await post.save();
+    res.status(200).json({
+      check: check,
+      post: result,
+    });
   },
 };
 
