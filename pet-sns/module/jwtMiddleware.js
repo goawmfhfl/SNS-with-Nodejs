@@ -14,6 +14,8 @@ const jwtMiddleware = async (req, res, next) => {
     // 로그아웃 일 때는 로그인 상태를 보여주기 위해서 사용한다.
     res.locals.isAuthenticated = {};
     return next();
+    // https://velog.io/@rohkorea86/NodeJs-%EC%BD%98%EC%86%94-GET-ms-%EB%A9%94%EC%84%B8%EC%A7%80
+    // 디버깅
   }
   try {
     // decoded 는 복호화를 뜻한다.
