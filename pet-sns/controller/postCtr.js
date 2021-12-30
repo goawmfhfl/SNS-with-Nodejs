@@ -8,10 +8,10 @@ const formatDate = date => {
   let day = "" + d.getDate();
   let year = d.getFullYear();
   if (month.length < 2) {
-    month = `0 ${month}`;
+    month = "0" + month;
   }
   if (day.length < 2) {
-    day = `0 ${day}`;
+    day = "0" + day;
   }
   return [year, month, day].join("-");
 };
@@ -21,12 +21,13 @@ const postCtr = {
     const { title, content } = req.body;
     // 이미지를 불러와야한다. s3에 업로드를 활용하는 방법을 알아보자
     const image = req.file.location;
-    const publisheDate = formatDate(new Date());
+    const publishedDate = formatDate(new Date());
     const post = new Post({
       title: title,
       content: content,
       image: image,
-      publisheDate: publisheDate,
+      publishedDate: publishedDate,
+      user: req.userInfo,
     });
     try {
       await post.save();
