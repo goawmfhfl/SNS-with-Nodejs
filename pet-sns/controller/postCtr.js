@@ -60,6 +60,21 @@ const postCtr = {
     const post = await Post.findById(id);
     res.render("update", { post: post });
   },
+  update: async (req, res) => {
+    const { id } = req.params;
+    const { title, content } = req.body;
+    try {
+      await Post.findByIdAndUpdate(
+        id,
+        { title: title, content: content },
+        // 업데이트된 값을 반영하기 위해서 new true를 해줘야한다.
+        { new: true },
+      );
+      res.redirect("/");
+    } catch (error) {
+      res.status(500).send("Update error");
+    }
+  },
 };
 
 module.exports = postCtr;
