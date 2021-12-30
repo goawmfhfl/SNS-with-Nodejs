@@ -73,16 +73,22 @@
     </div>
     <script>
       let name;
-
+      // 좋아요버튼 클릭을 할 경우 발생하는 이벤트
       $(".heart-count").click(function (e) {
         const id = $(this).attr("key");
+        // 클릭한 값의 id값을 받아오게 된다.
+        // ajax 요청을 한다.
         $.ajax({
+          // id url에 post로 요청값을 보낸다
           url: `/posts/like/${id}`,
           type: "POST",
           cache: false,
           dataType: "json",
           success: function (data) {
             $(`#${id} > span`).text(data.post.likeCount);
+            // 데이터 체크를 통해서 해당 파일이 checkd 표시가 될지
+            // class를 더할지 말지로 정해준다
+            // 클래스가 생긴다면 체크된 ui를 위해 그에맞는 클래스를 추가한다.
             if (!data.check) {
               $(`#${id}`).addClass("checked");
             } else {
