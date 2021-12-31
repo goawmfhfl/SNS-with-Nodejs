@@ -161,12 +161,24 @@
       });
       // 실시간 채팅 기능 구현
       $(() => {
+        // 채팅을 누가하는지 파악해야한다.
+        const name = "<%= isAuthenticated.username %>";
         const socket = io();
+
+        // 웹소켓을 사용하면 사용자의 요청이 없더라도
+        // 서버는 클라이언트에게 응답을 보낼 수 있다.
+
         $("#chat_form").submit(() => {
+          // 해당 이름으로 매개변수를 통해서 소켓은 통신을 한다.
           socket.emit("chat-msg", name, $(".chat_input").val());
           $(".chat_input").val("");
           return false;
         });
+        // app.js의 emit정보
+        // app.io.emit("chat-msg", user, msg)
+        // 를 통해서 서버에 보여주는 것이다.
+        // 이로써 클라이언트의 요청을 index.ejs에서 직접 구현했고
+        // 응답또한 아래와 지금과같이 구현을 진행 한 것이다
         socket.on("chat-msg", (name, msg) => {
           let chat = `<div class="chat_block">
           <span style="font-weight: bolder">${name}</span> :

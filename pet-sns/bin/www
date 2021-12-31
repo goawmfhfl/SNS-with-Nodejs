@@ -33,6 +33,9 @@ app.set("port", port);
  */
 
 var server = http.createServer(app);
+// 소켓 io에 서버를 붙여넣는것이다
+// 이를 통해서 io는 서버에 통신할 수 있는 준비가 끝난다.
+app.io.attach(server);
 
 /**
  * Listen on provided port, on all network interfaces.
