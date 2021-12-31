@@ -30,6 +30,21 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
+// app에 불러와서 연결을 시켜줘야한다
+// 초기환경세팅 끝
+// 1. www에 attach
+// 2. app.js에 소켓 아이오 연결
+app.io = require("socket.io")();
+// 클라이언트가 접속했을 때 커넥션 진행
+app.io.on("connection", socket => {
+  //(now server) emit에서 보낸 정보를 받아낸다.
+  socket.on("chat-msg", (user, msg) => {
+    // 전체 클라이언트에게 해당 메세지와 username을 보낼 수 있다.
+    app.io.emit("chat-msg", user, msg);
+    // 이 정보를 이제 emit을 통해서 다시 클라이언트의 on과 연동짓게한다.
+  });
+});
+
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
