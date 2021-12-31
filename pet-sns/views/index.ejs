@@ -100,25 +100,41 @@
           },
         });
       });
+      // 댓글기능 구현
       $(".comment_button").click(function (e) {
         const id = $(this).attr("key");
+        // 사용자의 아이디 값을 가져온다.
+        // 해당 아이디를 가진 요소에 값을 가져온다.
+
         $(`#comment_wrap_${id}`).slideToggle();
       });
+      // 엔터를 누르면 이벤트 발생
       $(".comment_input").keydown(function (e) {
+        // 13 === 엔터
         if (e.keyCode === 13) {
           e.preventDefault();
           const id = $(this).attr("key");
+          // id값을 불러온다
           const inputCommnet = $(this).val();
+          // 입력한 댓글 내용을 받아온다
           $(this).val("");
+          // 댓글 내용을 초기화한다
+
+          // ajax요청을 보낸다.
           $.ajax({
             url: `/posts/comment/${id}`,
             type: "POST",
             cache: false,
             dataType: "json",
+            // 내용을 data에 담아서 보낸다
             data: {
               comment: inputCommnet,
             },
+
+            // 응답을 잘 받을 경우 data에 담긴다.
             success: function (data) {
+              // 백단에서 받은 정보를 바탕으로 데이터 바인딩을 시킨 후에
+              // 화면에 보여주게 된다
               const comment = data.post.comment;
               let comment_body = "";
               const arr = comment.reverse();
@@ -143,6 +159,7 @@
           });
         }
       });
+      // 실시간 채팅 기능 구현
       $(() => {
         const socket = io();
         $("#chat_form").submit(() => {

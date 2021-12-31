@@ -27,4 +27,7 @@ router.post("/delete/:id", checkUser, postCtr.delete);
 // like 기능 구현
 router.post("/like/:id", checkUser, postCtr.like);
 
+// 댓글 기능 구현
+router.post("/comment/:id", checkUser, postCtr.comment);
+
 module.exports = router;

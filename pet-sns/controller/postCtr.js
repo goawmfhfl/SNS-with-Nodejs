@@ -112,6 +112,20 @@ const postCtr = {
       post: result,
     });
   },
+  comment: async (req, res) => {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    const user = req.userInfo;
+    const { comment } = req.body;
+    const commentWrap = {
+      comment: comment,
+      user: user,
+    };
+    // 스키마 형식에 맞는 데이터를 입력한다.
+    post.comment.push(commentWrap);
+    const result = await post.save();
+    res.status(200).json({ post: result });
+  },
 };
 
 module.exports = postCtr;
