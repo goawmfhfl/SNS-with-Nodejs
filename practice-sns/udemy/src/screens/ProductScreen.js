@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import Rating from "../components/Rating";
 import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
-import productData from "../products";
 
 const ProductScreen = () => {
+  const [product, setProduct] = useState({});
   let { id } = useParams();
-  const product = productData.find(p => p._id === id);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      // 백엔드에서 해당 id값을 가지고 있는 데이터를 가져온다.
+      // 기존 find메서드를 적을 필요가 없다. axios를 통해서 해당 id값만 찾아오면 되기 때문이다.
+      const { data } = await axios.get(`/api/products/${id}`);
+      setProduct(data);
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
