@@ -7,7 +7,6 @@ import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 const ProductScreen = () => {
   const [product, setProduct] = useState({});
   let { id } = useParams();
-
   useEffect(() => {
     const fetchProducts = async () => {
       // 백엔드에서 해당 id값을 가지고 있는 데이터를 가져온다.
@@ -16,7 +15,7 @@ const ProductScreen = () => {
       setProduct(data);
     };
     fetchProducts();
-  }, []);
+  }, [id]);
 
   return (
     <>
