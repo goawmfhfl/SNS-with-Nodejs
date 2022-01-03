@@ -8,11 +8,14 @@
     "start": "node Backend/server",
     "server": "nodemon BackEnd/server",
     "client": "npm start --prefix FrontEnd",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node ./BackEnd/seeder.js",
+    "data:destroy": "node BackEnd/seeder -D"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
