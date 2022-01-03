@@ -9,7 +9,7 @@
     "server": "nodemon BackEnd/server",
     "client": "npm start --prefix FrontEnd",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "data:import": "node ./BackEnd/seeder.js",
+    "data:import": "node BackEnd/seeder ",
     "data:destroy": "node BackEnd/seeder -D"
   },
   "author": "",
@@ -19,6 +19,7 @@
     "colors": "^1.4.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
+    "express-async-handler": "^1.2.0",
     "mongoose": "^6.1.4"
   },
   "devDependencies": {

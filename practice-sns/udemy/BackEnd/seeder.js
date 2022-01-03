@@ -21,9 +21,9 @@ connectDB();
 const importData = async () => {
   try {
     // 모든것을 지워버릴것이다.??
-    await User.deleteMany();
-    await Product.deleteMany();
     await Order.deleteMany();
+    await Product.deleteMany();
+    await User.deleteMany();
 
     // 생성된 유저의 정보를 담는 배열이다.
     const createdUser = await User.insertMany(users);
@@ -33,6 +33,7 @@ const importData = async () => {
     const sampleProducts = products.map(product => {
       return { ...product, user: adminUser };
     });
+    // isAdmin admin은 모든 데이터에 대한 접근 권한을 갖게 된다.
     // sampleProducts에는 어떤 변수가 담기는가?
     // adminUser로 인해서 isAdmin 스키마를 가지고 있던 유저는
     // true 값을 가질 수 있게 되었다.
