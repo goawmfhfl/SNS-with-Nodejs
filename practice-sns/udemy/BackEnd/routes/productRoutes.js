@@ -24,12 +24,12 @@ router.get(
   "/:id",
   asyncHanlder(async (req, res) => {
     const products = await Product.findById(req.params.id);
+
     if (products) {
       res.json(products);
     } else {
-      res.status(404).json({
-        message: "Product not found",
-      });
+      res.status(404);
+      throw new Error("Product not found");
     }
   }),
 );
