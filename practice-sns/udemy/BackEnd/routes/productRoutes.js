@@ -17,7 +17,7 @@ router.get(
 );
 
 // @desc Fetch single products
-// @route GET / api / products
+// @route GET / api / productsw
 // @desc Public
 
 router.get(

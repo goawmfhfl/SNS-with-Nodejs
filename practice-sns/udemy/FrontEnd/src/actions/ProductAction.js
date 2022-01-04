@@ -1,9 +1,9 @@
+import axios from "axios";
 import {
   PRODUCT_LIST_REQUEST,
-  PRUDUCT_LIST_SUCCESS,
-  PRUDUCT_LIST_FAIL,
+  PRODUCT_LIST_SUCCESS,
+  PRODUCT_LIST_FAIL,
 } from "../constants/ProductConstants";
-import axios from "axios";
 
 const listProducts = () => async dispatch => {
   try {
@@ -12,14 +12,14 @@ const listProducts = () => async dispatch => {
     const { data } = await axios.get("/api/products");
 
     dispatch({
-      type: PRUDUCT_LIST_SUCCESS,
-      plyload: data,
+      type: PRODUCT_LIST_SUCCESS,
+      payload: data,
     });
   } catch (error) {
     // 백엔드의 오류를 가져와서 프론트엔드에 표시해줘야한다.
     dispatch({
-      type: PRUDUCT_LIST_FAIL,
-      plyload:
+      type: PRODUCT_LIST_FAIL,
+      payload:
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
