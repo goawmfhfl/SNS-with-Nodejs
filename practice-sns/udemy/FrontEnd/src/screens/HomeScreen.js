@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
+
 import listProducts from "../actions/ProductAction";
 
 // 1 useEffect를 통해서 listProducts에 있는 reducer를 dispatch를 통해 불러온다
@@ -28,10 +31,10 @@ const HomeScreen = () => {
       <h1>Latest Products</h1>
       {/* 로딩중일 경우 Loading 메세지 프론트에 표시 */}
       {loading ? (
-        <h2>Loading...</h2>
+        <Loader />
       ) : // 에러발생시 error 메세지 프론트에 표시
       error ? (
-        <h3>{error}</h3>
+        <Message variant="danger">{error}</Message>
       ) : (
         // 로딩이 끝나고 에러가 아닐시에 정상적으로 product 페이지 업로드
         <Row>
