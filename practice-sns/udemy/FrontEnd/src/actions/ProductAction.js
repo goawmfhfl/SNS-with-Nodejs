@@ -3,9 +3,12 @@ import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
+  PRODUCT_DETAIL_REQUEST,
+  PRODUCT_DETAIL_SUCCESS,
+  PRODUCT_DETAIL_FAIL,
 } from "../constants/ProductConstants";
 
-const listProducts = () => async dispatch => {
+export const listProducts = () => async dispatch => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
@@ -27,4 +30,23 @@ const listProducts = () => async dispatch => {
   }
 };
 
-export default listProducts;
+export const listProductDetails = id => async dispatch => {
+  try {
+    dispatch({ type: PRODUCT_DETAIL_REQUEST });
+    const { data } = await axios.get(`/api/products/${id}`);
+
+    dispatch({
+      type: PRODUCT_DETAIL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    // 백엔드의 오류를 가져와서 프론트엔드에 표시해줘야한다.
+    dispatch({
+      type: PRODUCT_DETAIL_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
