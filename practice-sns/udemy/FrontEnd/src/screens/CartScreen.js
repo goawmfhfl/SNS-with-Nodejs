@@ -16,7 +16,7 @@ import {
   Card,
 } from "react-bootstrap";
 import Message from "../components/Message";
-import { addToCart } from "../actions/CartAction";
+import { addToCart, removeFromCart } from "../actions/CartAction";
 
 const CartScreen = () => {
   const { id } = useParams();
@@ -27,7 +27,6 @@ const CartScreen = () => {
 
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
-  console.log(cartItems[0].qty);
   // useSelector는 전체 전역에 있는 reducer들을 담고있다.
   // state  // productList: {…}, productDetails: {…}, cart: {…}}
   // state.cart  // cartItems: (4) [{…}, {…}, {…}, {…}]
@@ -38,8 +37,8 @@ const CartScreen = () => {
     }
   }, [dispatch, id, qty]);
 
-  const removeFromCartHandler = () => {
-    console.log("remove");
+  const removeFromCartHandler = id => {
+    dispatch(removeFromCart(id));
   };
   const checkoutHandler = () => {
     navigate("/login/?redirect=shipping");
@@ -51,7 +50,7 @@ const CartScreen = () => {
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Yoyr cart is empty<Link to="/">go Back</Link>
+            Your cart is empty<Link to="/"> go Back</Link>
           </Message>
         ) : (
           <ListGroup variant="flush">

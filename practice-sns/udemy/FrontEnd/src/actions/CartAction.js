@@ -22,3 +22,12 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
   // 어디에서 실제 아이템 정보를 저장하는가 ? store에서 진행한다.
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };
+
+export const removeFromCart = id => (dispatch, getState) => {
+  dispatch({
+    type: CART_REMOVE_ITEM,
+    payload: id,
+  });
+
+  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
